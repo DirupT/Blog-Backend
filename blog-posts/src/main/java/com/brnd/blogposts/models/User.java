@@ -2,7 +2,9 @@ package com.brnd.blogposts.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -17,13 +19,13 @@ public class User {
     private List<Blog> blogs;
 
     public User() {
-
+        this("", "");
     }
 
-    public User(String username, String password, List<Blog> blogs) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.blogs = blogs;
+        this.blogs = new ArrayList<>();
     }
 
     public Long getId() {
@@ -56,6 +58,19 @@ public class User {
 
     public void setBlogs(List<Blog> blogs) {
         this.blogs = blogs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(blogs, user.blogs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, blogs);
     }
 
     @Override

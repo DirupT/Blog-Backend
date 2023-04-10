@@ -2,6 +2,8 @@ package com.brnd.blogposts.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Blog {
     @Id
@@ -36,6 +38,19 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Blog blog = (Blog) o;
+        return Objects.equals(id, blog.id) && Objects.equals(content, blog.content) && Objects.equals(user, blog.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, user);
     }
 
     @Override
