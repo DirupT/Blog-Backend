@@ -1,18 +1,18 @@
 package com.brnd.blogposts.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Blog {
     @Id
+    @GeneratedValue
     private Long id;
 
-    @Column(name = "content")
-    @GeneratedValue
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Blog() {
 
