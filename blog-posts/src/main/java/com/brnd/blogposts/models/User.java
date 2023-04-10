@@ -16,8 +16,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Blog> blogs;
 
-    public User(Long id, String username, String password, List<Blog> blogs) {
-        this.id = id;
+    public User() {
+
+    }
+
+    public User(String username, String password, List<Blog> blogs) {
         this.username = username;
         this.password = password;
         this.blogs = blogs;

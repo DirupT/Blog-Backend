@@ -18,8 +18,7 @@ public class Blog {
 
     }
 
-    public Blog(Long id, String content) {
-        this.id = id;
+    public Blog(String content) {
         this.content = content;
     }
 
